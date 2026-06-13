@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Developer Portfolio</title>
+    <!-- Google Fonts & FontAwesome (アイコン用) -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -80,7 +81,7 @@
             color: var(--accent-color);
         }
 
-        /* --- ヒーローセクション（動画背景に対応） --- */
+        /* --- ヒーローセクション --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -89,11 +90,10 @@
             text-align: center;
             position: relative;
             padding: 0 1rem;
-            overflow: hidden; /* 動画のはみ出しを防止 */
-            background-color: var(--bg-color); /* 動画読み込み前のフォールバック */
+            overflow: hidden;
+            background-color: var(--bg-color);
         }
 
-        /* 背景ビデオの配置 */
         .hero-video {
             position: absolute;
             top: 50%;
@@ -104,10 +104,9 @@
             width: auto;
             height: auto;
             z-index: 1;
-            object-fit: cover; /* アスペクト比を維持して画面いっぱいに広げる */
+            object-fit: cover;
         }
 
-        /* 動画の視認性を上げるための黒マスク */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -118,7 +117,6 @@
             z-index: 2;
         }
 
-        /* コンテンツを動画より前面に出す */
         .hero-content {
             position: relative;
             z-index: 3;
@@ -131,12 +129,12 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             animation: fadeIn 1.5s ease;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 文字の輪郭をくっきり */
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            color: var(--text-color); /* 少し明るく調整 */
+            color: var(--text-color);
             margin-bottom: 2.5rem;
             letter-spacing: 1px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
@@ -145,7 +143,7 @@
         .btn-cta {
             display: inline-block;
             padding: 0.8rem 2.5rem;
-            background: rgba(13, 15, 18, 0.6); /* 背景が透けるように調整 */
+            background: rgba(13, 15, 18, 0.6);
             border: 2px solid var(--accent-color);
             color: var(--accent-color);
             font-weight: 700;
@@ -259,6 +257,16 @@
             margin-bottom: 1.5rem;
         }
 
+        .work-features {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            padding-left: 1.2rem;
+        }
+        .work-features li {
+            margin-bottom: 0.3rem;
+        }
+
         .work-links {
             display: flex;
             gap: 1rem;
@@ -363,6 +371,7 @@
 </head>
 <body>
 
+    <!-- ヘッダー -->
     <header>
         <nav class="nav-container">
             <div class="logo">PORTFOLIO</div>
@@ -375,43 +384,53 @@
         </nav>
     </header>
 
+    <!-- ヒーローセクション -->
     <section id="hero" class="hero">
+        <!-- 💡 指定された動画ファイル「0606.mp4」に変更しました -->
         <video class="hero-video" src="0606.mp4" autoplay loop muted playsinline></video>
-        
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1>Create Worlds.</h1>
-            <p>ゲーム開発者 / プログラマーのポートフォリオ</p>
-            <a href="#works" class="btn-cta">View My Works</a>
+            <h1>Hunt the Dragons.</h1>
+            <p>竜を狩る、その一撃のために。一人称視点アクションRPG</p>
+            <a href="#works" class="btn-cta">View Projects</a>
         </div>
     </section>
 
+    <!-- 作品セクション -->
     <section id="works" class="container">
         <h2 class="section-title">Featured Works</h2>
         
         <div class="work-grid">
+            <!-- 作品カード 1: 竜狩りRPG -->
             <div class="work-card">
                 <div class="work-thumbnail">
-                    <i class="fa-solid fa-gamepad"></i>
+                    <i class="fa-solid fa-dragon" style="color: #ff4a4a;"></i>
                 </div>
                 <div class="work-body">
                     <div class="work-tags">
-                        <span class="tag">Unity</span>
+                        <span class="tag">Unity (URP)</span>
                         <span class="tag">C#</span>
-                        <span class="tag">2D / Physics</span>
+                        <span class="tag">3D Action RPG</span>
+                        <span class="tag">1st Person</span>
                     </div>
-                    <h3 class="work-title">インディーズ・アクションゲーム</h3>
+                    <h3 class="work-title">竜狩りRPG</h3>
                     <p class="work-text">
-                        Rigidbody2Dを用いた直感的な操作感と、独自のシェーダーを活用した幻想的なグラフィックが特徴の2Dアクションゲーム。
+                        圧倒的な巨体を持つ竜との死闘を描く、一人称視点の本格3DアクションRPG。プレイヤーの視点操作とシビアな駆け引きが融合した緊迫感あるバトルシステムを構築。
                     </p>
+                    <ul class="work-features">
+                        <li><strong>変幻自在のバトルスタイル:</strong> 3つの武器種を自由に切り替えて戦闘可能。</li>
+                        <li><strong>魔法と弱点属性の攻防:</strong> 敵ごとに異なる魔法属性の「弱点」を見極め、大ダメージを狙う戦略性。</li>
+                        <li><strong>卓越した手触り感:</strong> 敵の激しい猛攻を「ガード」やジャストタイミングの「パリィ」で捌ききる、ハイレスポンスな防御アクション。</li>
+                    </ul>
                     <div class="work-links">
-                        <a href="#" class="btn-sm"><i class="fa-solid fa-play"></i> Play (WebGL)</a>
+                        <a href="#" class="btn-sm"><i class="fa-solid fa-video"></i> Trailer</a>
                         <a href="#" class="btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
 
+            <!-- 作品カード 2 -->
             <div class="work-card">
                 <div class="work-thumbnail">
                     <i class="fa-solid fa-shield-cat"></i>
@@ -433,6 +452,7 @@
                 </div>
             </div>
 
+            <!-- 作品カード 3 -->
             <div class="work-card">
                 <div class="work-thumbnail">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -454,6 +474,7 @@
         </div>
     </section>
 
+    <!-- スキルセクション -->
     <section id="skills" class="container" style="background: rgba(255,255,255,0.01); border-radius: 12px;">
         <h2 class="section-title">Skills & Tools</h2>
         <div class="skills-container">
@@ -465,7 +486,7 @@
             <div class="skill-box">
                 <i class="fa-solid fa-cubes"></i>
                 <h3>Unity Engine</h3>
-                <p>2D物理挙動、URPを用いた描画チューニング、ShaderGraphによるビジュアル演出の実装が可能です。</p>
+                <p>2D/3D物理挙動、URPを用いた描画チューニング、ShaderGraphによるビジュアル演出の実装が可能です。</p>
             </div>
             <div class="skill-box">
                 <i class="fa-brands fa-git-alt"></i>
@@ -475,6 +496,7 @@
         </div>
     </section>
 
+    <!-- アバウトセクション -->
     <section id="about" class="container">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
@@ -490,6 +512,7 @@
         </div>
     </section>
 
+    <!-- フッター -->
     <footer>
         <p>&copy; 2026 Your Name. All Rights Reserved.</p>
     </footer>

@@ -1,1 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Developer Portfolio</title>
+    <!-- Google Fonts & FontAwesome (アイコン用) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 基本リセット & 共通スタイル --- */
+        :root {
+            --bg-color: #0d0f12;
+            --card-bg: #161a22;
+            --accent-color: #00ffcc;
+            --accent-hover: #00cca3;
+            --text-color: #f5f6f7;
+            --text-muted: #8b949e;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* --- ヘッダー / ナビゲーション --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 15, 18, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, #1a2333 0%, var(--bg-color) 70%);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+        }
+
+        /* --- メインコンテンツ枠 --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        /* --- 作品セクション (グリッド) --- */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .work-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: rgba(0, 255, 204, 0.2);
+        }
+
+        .work-thumbnail {
+            width: 100%;
+            height: 210px;
+            background: #252d3d; /* 画像がない場合のプレースホルダー色 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 実際に画像を入れる場合はこちらが適用されます */
+        .work-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-body {
+            padding: 1.5rem;
+        }
+
+        .work-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .work-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .work-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            border: 1px solid var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-sm:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- スキル / スタイル セクション --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            padding: 2.5rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        .skill-box i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-box h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- アバウトセクション --- */
+        .about-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- フッター --- */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* モバイル時は簡易化のため非表示 */
+            .work-grid { grid-template-columns: 1fr; }
+            .about-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <nav class="nav-container">
+            <div class="logo">PORTFOLIO</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Create Worlds.</h1>
+            <p>ゲーム開発者 / プログラマーのポートフォリオ</p>
+            <a href="#works" class="btn-cta">View My Works</a>
+        </div>
+    </section>
+
+    <!-- 作品セクション -->
+    <section id="works" class="container">
+        <h2 class="section-title">Featured Works</h2>
+        
+        <div class="work-grid">
+            <!-- 作品カード 1 -->
+            <div class="work-card">
+                <div class="work-thumbnail">
+                    <!-- 画像がある場合は以下に差し替え -->
+                    <!-- <img src="game1.jpg" alt="作品のサムネイル"> -->
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <div class="work-body">
+                    <div class="work-tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">2D / Physics</span>
+                    </div>
+                    <h3 class="work-title">インディーズ・アクションゲーム</h3>
+                    <p class="work-text">
+                        Rigidbody2Dを用いた直感的な操作感と、独自のシェーダーを活用した幻想的なグラフィックが特徴の2Dアクションゲーム。
+                    </p>
+                    <div class="work-links">
+                        <a href="#" class="btn-sm"><i class="fa-solid fa-play"></i> Play (WebGL)</a>
+                        <a href="#" class="btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品カード 2 -->
+            <div class="work-card">
+                <div class="work-thumbnail">
+                    <i class="fa-solid fa-shield-cat"></i>
+                </div>
+                <div class="work-body">
+                    <div class="work-tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">Tower Defense</span>
+                    </div>
+                    <h3 class="work-title">タクティカル・タワーディフェンス</h3>
+                    <p class="work-text">
+                        ドット絵のキャラクターたちが戦う、戦略性を重視したタワーディフェンスゲーム。アニメーションとエフェクトの同期を徹底。
+                    </p>
+                    <div class="work-links">
+                        <a href="#" class="btn-sm"><i class="fa-solid fa-video"></i> Video</a>
+                        <a href="#" class="btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品カード 3 -->
+            <div class="work-card">
+                <div class="work-thumbnail">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div class="work-body">
+                    <div class="work-tags">
+                        <span class="tag">URP</span>
+                        <span class="tag">ShaderGraph</span>
+                    </div>
+                    <h3 class="work-title">シームレス・スカイボックスブレンダー</h3>
+                    <p class="work-text">
+                        UnityのURP環境において、2つの異なる環境をスムーズにブレンドするカスタムシェーダー。ゲームの演出面を強化。
+                    </p>
+                    <div class="work-links">
+                        <a href="#" class="btn-sm"><i class="fa-brands fa-github"></i> Source</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション -->
+    <section id="skills" class="container" style="background: rgba(255,255,255,0.01); border-radius: 12px;">
+        <h2 class="section-title">Skills & Tools</h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class="fa-solid fa-code"></i>
+                <h3>C# / 🛠️</h3>
+                <p>Unityを中心としたゲームロジックの実装、オブジェクト指向設計に基づいた綺麗なコード記述を意識しています。</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-cubes"></i>
+                <h3>Unity Engine</h3>
+                <p>2D物理挙動、URPを用いた描画チューニング、ShaderGraphによるビジュアル演出の実装が可能です。</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-brands fa-git-alt"></i>
+                <h3>Version Control</h3>
+                <p>Git / GitHubを用いたソースコード管理。LFS等の容量制限を考慮した効率的なゲームプロジェクト運用を学び中。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- アバウトセクション -->
+    <section id="about" class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>こんにちは、UnityとC#を用いてゲーム開発を行っているデベロッパーです。</p>
+                <p>ただ動くだけでなく、触っていて気持ちの良い「手触り感」や、プレイヤーを引き込む「エフェクト・シェーダー演出」にこだわりを持って日々制作に取り組んでいます。</p>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 Your Name. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

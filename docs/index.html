@@ -7,7 +7,7 @@
     <!-- Google Fonts & FontAwesome (アイコン用) -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* --- 基本リセット & 共通スタイル --- */
         :root {
@@ -19,15 +19,9 @@
             --text-muted: #8b949e;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-color);
@@ -37,328 +31,163 @@
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+        a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
 
         /* --- ヘッダー / ナビゲーション --- */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 0; width: 100%;
             background: rgba(13, 15, 18, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent-color);
+            font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 800;
+            letter-spacing: 2px; color: var(--accent-color);
         }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a:hover { color: var(--accent-color); }
 
         /* --- ヒーローセクション --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 0 1rem;
-            overflow: hidden;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding: 0 1rem; overflow: hidden;
             background-color: var(--bg-color);
         }
-
         .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: 1;
-            object-fit: cover;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            z-index: 1; object-fit: cover;
         }
-
         .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, rgba(13, 15, 18, 0.5) 0%, rgba(13, 15, 18, 0.85) 80%);
             z-index: 2;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-        }
-
+        .hero-content { position: relative; z-index: 3; }
         .hero-content h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            animation: fadeIn 1.5s ease;
+            font-family: 'Cinzel', serif; font-size: 3.5rem; letter-spacing: 4px;
+            margin-bottom: 1rem; text-transform: uppercase; animation: fadeIn 1.5s ease;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
-
         .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 2.5rem;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            font-size: 1.2rem; color: var(--text-color); margin-bottom: 2.5rem;
+            letter-spacing: 1px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
         }
+
+        /* ヒーロー内のボタン群 */
+        .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn-cta {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            background: rgba(13, 15, 18, 0.6);
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            font-weight: 700;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            backdrop-filter: blur(4px);
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.8rem 2.2rem; background: rgba(13, 15, 18, 0.6);
+            border: 2px solid var(--accent-color); color: var(--accent-color);
+            font-weight: 700; letter-spacing: 2px; border-radius: 4px;
+            text-transform: uppercase; backdrop-filter: blur(4px);
         }
-
         .btn-cta:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
+            background: var(--accent-color); color: var(--bg-color);
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
         }
+        /* ヒーローのSteamボタン（塗りつぶしで主役に） */
+        .btn-cta.filled {
+            background: var(--accent-color); color: var(--bg-color);
+        }
+        .btn-cta.filled:hover { background: var(--accent-hover); }
 
         /* --- メインコンテンツ枠 --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
         .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            letter-spacing: 2px;
+            font-family: 'Cinzel', serif; font-size: 2.2rem; text-align: center;
+            margin-bottom: 4rem; position: relative; letter-spacing: 2px;
         }
-
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
+            content: ''; position: absolute; bottom: -10px; left: 50%;
+            transform: translateX(-50%); width: 50px; height: 2px; background-color: var(--accent-color);
         }
 
         /* --- 作品セクション (グリッド) --- */
         .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem; justify-content: center; max-width: 620px; margin: 0 auto;
         }
-
         .work-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
+            background-color: var(--card-bg); border-radius: 8px; overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             border-color: rgba(0, 255, 204, 0.2);
         }
-
         .work-thumbnail {
-            width: 100%;
-            height: 210px;
-            background: #252d3d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
+            width: 100%; height: 210px; background: #252d3d; display: flex;
+            align-items: center; justify-content: center; color: var(--text-muted);
+            font-size: 3rem; position: relative; overflow: hidden;
         }
-
-        .work-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .work-body {
-            padding: 1.5rem;
-        }
-
-        .work-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-            flex-wrap: wrap;
-        }
-
+        .work-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .work-body { padding: 1.5rem; }
+        .work-tags { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
         .tag {
-            font-size: 0.75rem;
-            background: rgba(0, 255, 204, 0.1);
-            color: var(--accent-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 500;
+            font-size: 0.75rem; background: rgba(0, 255, 204, 0.1); color: var(--accent-color);
+            padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 500;
         }
-
-        .work-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .work-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
+        .work-title { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .work-text { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
         .work-features {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-            padding-left: 1.2rem;
+            font-size: 0.85rem; color: var(--text-color); margin-bottom: 1.5rem; padding-left: 1.2rem;
         }
-        .work-features li {
-            margin-bottom: 0.3rem;
-        }
-
-        .work-links {
-            display: flex;
-            gap: 1rem;
-        }
+        .work-features li { margin-bottom: 0.3rem; }
+        .work-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .btn-sm {
-            padding: 0.4rem 1rem;
-            font-size: 0.85rem;
-            border-radius: 4px;
-            border: 1px solid var(--text-muted);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            padding: 0.45rem 1.1rem; font-size: 0.85rem; border-radius: 4px;
+            border: 1px solid var(--text-muted); display: inline-flex; align-items: center; gap: 0.5rem;
         }
+        .btn-sm:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        .btn-sm:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
+        /* Steamボタン（リリース導線なので塗りつぶしで強調） */
+        .btn-steam {
+            background: var(--accent-color); color: var(--bg-color);
+            border-color: var(--accent-color); font-weight: 700;
+        }
+        .btn-steam:hover {
+            background: var(--accent-hover); color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
         }
 
         /* --- スキル / スタイル セクション --- */
         .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; text-align: center;
         }
-
-        .skill-box {
-            background: var(--card-bg);
-            padding: 2.5rem 1.5rem;
-            border-radius: 8px;
-        }
-
-        .skill-box i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-box h3 {
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-box p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
+        .skill-box { background: var(--card-bg); padding: 2.5rem 1.5rem; border-radius: 8px; }
+        .skill-box i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.2rem; }
+        .skill-box h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
+        .skill-box p { font-size: 0.9rem; color: var(--text-muted); }
 
         /* --- アバウトセクション --- */
         .about-content {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 0 auto;
+            background: var(--card-bg); padding: 3rem; border-radius: 8px;
+            max-width: 800px; margin: 0 auto;
         }
-
-        .about-text {
-            margin-bottom: 2rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            font-size: 1.5rem;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
+        .about-text { margin-bottom: 2rem; }
+        .about-text p { margin-bottom: 1rem; }
+        .social-links { display: flex; justify-content: center; gap: 2rem; font-size: 1.5rem; }
+        .social-links a:hover { color: var(--accent-color); }
 
         /* --- フッター --- */
         footer {
-            text-align: center;
-            padding: 3rem 0;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center; padding: 3rem 0; font-size: 0.85rem;
+            color: var(--text-muted); border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* アニメーション */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* レスポンシブ */
         @media (max-width: 768px) {
@@ -386,23 +215,28 @@
 
     <!-- ヒーローセクション -->
     <section id="hero" class="hero">
-        <!-- 💡 指定された動画ファイル「0606.mp4」に変更しました -->
         <video class="hero-video" src="0606.mp4" autoplay loop muted playsinline></video>
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
             <h1>Hunt the Dragons.</h1>
             <p>竜を狩る、その一撃のために。一人称視点アクションRPG</p>
-            <a href="#works" class="btn-cta">View Projects</a>
+            <div class="hero-actions">
+                <a href="#works" class="btn-cta">View Projects</a>
+                <!-- ▼▼ Steamストアページのリリース用URLに差し替え ▼▼ -->
+                <a href="https://store.steampowered.com/" target="_blank" rel="noopener" class="btn-cta filled">
+                    <i class="fa-brands fa-steam"></i> Steamで見る
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- 作品セクション -->
     <section id="works" class="container">
         <h2 class="section-title">Featured Works</h2>
-        
+
         <div class="work-grid">
-            <!-- 作品カード 1: 竜狩りRPG -->
+            <!-- 作品カード: 竜狩りRPG -->
             <div class="work-card">
                 <div class="work-thumbnail">
                     <i class="fa-solid fa-dragon" style="color: #ff4a4a;"></i>
@@ -424,13 +258,18 @@
                         <li><strong>卓越した手触り感:</strong> 敵の激しい猛攻を「ガード」やジャストタイミングの「パリィ」で捌ききる、ハイレスポンスな防御アクション。</li>
                     </ul>
                     <div class="work-links">
-                        <a href="#" class="btn-sm"><i class="fa-solid fa-video"></i> Trailer</a>
-                        <a href="#" class="btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
+                        <!-- ▼▼ PV動画のURLに差し替え（YouTube等。今は同梱の0606.mp4を開く設定） ▼▼ -->
+                        <a href="0606.mp4" target="_blank" rel="noopener" class="btn-sm">
+                            <i class="fa-solid fa-play"></i> PV動画
+                        </a>
+                        <!-- ▼▼ Steamストアページのリリース用URLに差し替え ▼▼ -->
+                        <a href="https://store.steampowered.com/" target="_blank" rel="noopener" class="btn-sm btn-steam">
+                            <i class="fa-brands fa-steam"></i> Steam ストアページ
+                        </a>
                     </div>
                 </div>
             </div>
-
-            
+        </div>
     </section>
 
     <!-- スキルセクション -->
@@ -473,7 +312,7 @@
 
     <!-- フッター -->
     <footer>
-        <p>&copy; 2026 Your Name. All Rights Reserved.</p>
+        <p>&copy; 2026 Kota. All Rights Reserved.</p>
     </footer>
 
 </body>
